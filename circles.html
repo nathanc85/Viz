@@ -1,52 +1,40 @@
 <html>
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.min.js"></script>
-    <style>
-      svg {
-        width: 1000px;
-        height: 1000px;
-      }
-    </style>
-  </head>
-  <body>
-    <script type="text/javascript">
-      // 0, 2, 8, 1, 2
-      var svg = d3.select("body")
-        .append("svg");
 
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.min.js"></script>
+  <style>
+    svg {
+      width: 1000px;
+      height: 1000px;
+    }
+  </style>
+</head>
+
+<body>
+  <script type="text/javascript">
+    // 0, 2, 8, 1, 2
+    var svg = d3.select("body")
+      .append("svg");
+
+    var cx = 100;
+    var cy = 100;
+
+    drawCircle(2);
+    drawCircle(8);
+    drawCircle(1);
+    drawCircle(2);
+    function drawCircle(radius) {
       svg
         .append("circle")
-        .attr("r", 20)
-        .attr("cx", 100)
-        .attr("cy", 100)
+        .attr("r", radius)
+        .attr("cx", cx)
+        .attr("cy", cy)
         .attr("fill", "red")
         ;
 
-        svg
-        .append("circle")
-        .attr("r", 80)
-        .attr("cx", 200)
-        .attr("cy", 100)
-        .attr("fill", "red")
-        ;
+        cx +=100;
+    }
+  </script>
+</body>
 
-        svg
-        .append("circle")
-        .attr("r", 10)
-        .attr("cx", 300)
-        .attr("cy", 100)
-        .attr("fill", "red")
-        ;
-
-        svg
-        .append("circle")
-        .attr("r", 20)
-        .attr("cx", 400)
-        .attr("cy", 100)
-        .attr("fill", "red")
-        ;
-
-      
-    </script>
-  </body>
 </html>
