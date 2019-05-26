@@ -13,26 +13,65 @@
 <body>
   <script type="text/javascript">
     // 0, 2, 8, 1, 2
-    var svg = d3.select("body")
-      .append("svg");
+    var currentX = 455;
+    var currentY = 455;
 
-    var cx = 100;
-    var cy = 100;
+    var svg = d3.select("body")
+      .append("svg")
+      .attr("transform", "scale(8)");
 
     drawCircle(2);
     drawCircle(8);
     drawCircle(1);
     drawCircle(2);
+
+    currentX = 455;
+    currentY += 20;
+
+    drawRectangle(2);
+    drawRectangle(8);
+    drawRectangle(1);
+    drawRectangle(2);
+
     function drawCircle(radius) {
       svg
         .append("circle")
         .attr("r", radius)
-        .attr("cx", cx)
-        .attr("cy", cy)
+        .attr("cx", currentX)
+        .attr("cy", currentY)
         .attr("fill", "red")
         ;
 
-        cx +=100;
+      svg
+        .append("text")
+        .text(radius)
+        .attr("fill", "black")
+        .attr("x", currentX)
+        .attr("y", currentY)
+        .attr("font-size", "3pt")
+        ;
+        currentX += 25;
+    }
+
+    function drawRectangle(radius) {
+      svg
+        .append("rect")
+        .attr("width", 5)
+        .attr("height", radius)
+        .attr("x", currentX)
+        .attr("y", currentY)
+        .attr("fill", "red")
+        ;
+
+      svg
+        .append("text")
+        .text(radius)
+        .attr("fill", "black")
+        .attr("x", currentX)
+        .attr("y", currentY)
+        .attr("font-size", "3pt")
+        ;
+      currentX += 25;
     }
   </script>
 </body>
