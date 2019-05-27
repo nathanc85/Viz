@@ -28,6 +28,14 @@
     currentX = 455;
     currentY += 20;
 
+    drawProportionalCircle(2);
+    drawProportionalCircle(8);
+    drawProportionalCircle(1);
+    drawProportionalCircle(2);
+
+    currentX = 455;
+    currentY += 20;
+
     drawRectangle(2);
     drawRectangle(8);
     drawRectangle(1);
@@ -37,6 +45,26 @@
       svg
         .append("circle")
         .attr("r", radius)
+        .attr("cx", currentX)
+        .attr("cy", currentY)
+        .attr("fill", "red")
+        ;
+
+      svg
+        .append("text")
+        .text(radius)
+        .attr("fill", "black")
+        .attr("x", currentX)
+        .attr("y", currentY)
+        .attr("font-size", "3pt")
+        ;
+        currentX += 25;
+    }
+
+    function drawProportionalCircle(radius) {
+      svg
+        .append("circle")
+        .attr("r", Math.sqrt(radius))
         .attr("cx", currentX)
         .attr("cy", currentY)
         .attr("fill", "red")
