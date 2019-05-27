@@ -6,6 +6,7 @@
     svg {
       width: 1000px;
       height: 1000px;
+      transform-origin: 0 0;
     }
   </style>
 </head>
@@ -13,36 +14,39 @@
 <body>
   <script type="text/javascript">
     // 0, 2, 8, 1, 2
-    var currentX = 455;
-    var currentY = 455;
+    var currentX = 15;
+    var currentY = 15;
 
     var svg = d3.select("body")
       .append("svg")
       .attr("transform", "scale(8)");
 
+    var circleGroup = svg.append("g");
     drawCircle(2);
     drawCircle(8);
     drawCircle(1);
     drawCircle(2);
 
-    currentX = 455;
+    currentX = 15;
     currentY += 20;
 
+    var circlePropGroup = svg.append("g");
     drawProportionalCircle(2);
     drawProportionalCircle(8);
     drawProportionalCircle(1);
     drawProportionalCircle(2);
 
-    currentX = 455;
+    currentX = 15;
     currentY += 20;
 
+    var rectGroup = svg.append("g");
     drawRectangle(2);
     drawRectangle(8);
     drawRectangle(1);
     drawRectangle(2);
 
     function drawCircle(radius) {
-      svg
+      circleGroup
         .append("circle")
         .attr("r", radius)
         .attr("cx", currentX)
@@ -50,7 +54,7 @@
         .attr("fill", "red")
         ;
 
-      svg
+      circleGroup
         .append("text")
         .text(radius)
         .attr("fill", "black")
@@ -58,11 +62,11 @@
         .attr("y", currentY)
         .attr("font-size", "3pt")
         ;
-        currentX += 25;
+      currentX += 25;
     }
 
     function drawProportionalCircle(radius) {
-      svg
+      circlePropGroup
         .append("circle")
         .attr("r", Math.sqrt(radius))
         .attr("cx", currentX)
@@ -70,7 +74,7 @@
         .attr("fill", "red")
         ;
 
-      svg
+      circlePropGroup
         .append("text")
         .text(radius)
         .attr("fill", "black")
@@ -78,11 +82,11 @@
         .attr("y", currentY)
         .attr("font-size", "3pt")
         ;
-        currentX += 25;
+      currentX += 25;
     }
 
     function drawRectangle(radius) {
-      svg
+      rectGroup
         .append("rect")
         .attr("width", 5)
         .attr("height", radius)
@@ -91,7 +95,7 @@
         .attr("fill", "red")
         ;
 
-      svg
+      rectGroup
         .append("text")
         .text(radius)
         .attr("fill", "black")
