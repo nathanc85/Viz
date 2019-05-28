@@ -13,7 +13,8 @@
 
 <body>
   <script type="text/javascript">
-    // 0, 2, 8, 1, 2
+    var values = [0, 2, 8, 1, 2];
+
     var currentX = 15;
     var currentY = 15;
 
@@ -22,30 +23,21 @@
       .attr("transform", "scale(8)");
 
     var circleGroup = svg.append("g");
-    drawCircle(2);
-    drawCircle(8);
-    drawCircle(1);
-    drawCircle(2);
+    values.forEach(value => drawCircle(circleGroup, value));
 
     currentX = 15;
     currentY += 20;
 
     var circlePropGroup = svg.append("g");
-    drawProportionalCircle(2);
-    drawProportionalCircle(8);
-    drawProportionalCircle(1);
-    drawProportionalCircle(2);
+    values.forEach(value => drawProportionalCircle(circlePropGroup, value));
 
     currentX = 15;
     currentY += 20;
 
     var rectGroup = svg.append("g");
-    drawRectangle(2);
-    drawRectangle(8);
-    drawRectangle(1);
-    drawRectangle(2);
+    values.forEach(value => drawRectangle(rectGroup, value));
 
-    function drawCircle(radius) {
+    function drawCircle(circleGroup, radius) {
       circleGroup
         .append("circle")
         .attr("r", radius)
@@ -65,7 +57,7 @@
       currentX += 25;
     }
 
-    function drawProportionalCircle(radius) {
+    function drawProportionalCircle(circlePropGroup, radius) {
       circlePropGroup
         .append("circle")
         .attr("r", Math.sqrt(radius))
@@ -85,7 +77,7 @@
       currentX += 25;
     }
 
-    function drawRectangle(radius) {
+    function drawRectangle(rectGroup, radius) {
       rectGroup
         .append("rect")
         .attr("width", 5)
