@@ -77,12 +77,20 @@
     var xAxisGroup = dataGroup
       .append("g")
       .attr("class", "xAxisGroup")
-      .attr("transform", "translate(0, " + height + ")")
+      .attr("transform", "translate(0, " + height + ")");
 
     var xAxis = d3.axisBottom(x)
       .tickFormat(d3.timeFormat("%Y-%m-%d"));
 
     xAxis(xAxisGroup);
+
+    var yAxisGroup = dataGroup
+      .append("g")
+      .attr("class", "yAxisGroup");
+
+    var yAxis = d3.axisLeft(y);
+
+    yAxis(yAxisGroup);
 
   </script>
 </body>
