@@ -74,5 +74,15 @@
       .attr("stroke", "red")
       .attr("d", line);
 
+    var xAxisGroup = dataGroup
+      .append("g")
+      .attr("class", "xAxisGroup")
+      .attr("transform", "translate(0, " + height + ")")
+
+    var xAxis = d3.axisBottom(x)
+      .tickFormat(d3.timeFormat("%Y-%m-%d"));
+
+    xAxis(xAxisGroup);
+
   </script>
 </body>
