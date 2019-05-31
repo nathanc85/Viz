@@ -46,6 +46,8 @@
       .append("g")
       .attr("transform", "translate(" + margin + ", " + margin + ")");
 
+
+
     var parseTime = d3.timeParse("%m/%d/%Y");
 
     data.forEach(function (d) {
@@ -64,8 +66,21 @@
       }))
       .range([height, 0]);
 
-    plotVarible("value1", "red");
-    plotVarible("value2", "blue");
+
+      var propertyNames = []
+      var color = ["red", "blue", "green", "orange", "purple", "black", "yellow", "maroon"];
+      for (var name in data[0]) {
+        if (name != "date") {
+          propertyNames.push(name);
+          console.log(`Property ${name}`);
+        } 
+      }
+
+      for(var i = 0; i < propertyNames.length; i++) {
+        plotVarible(propertyNames[i], color[i]);
+      }
+
+      
 
     var xAxisGroup = dataGroup
       .append("g")
@@ -84,6 +99,8 @@
     var yAxis = d3.axisLeft(y);
 
     yAxis(yAxisGroup);
+
+
 
     function plotVarible(propertyName, color) {
       var line = d3.line()
