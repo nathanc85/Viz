@@ -67,20 +67,16 @@
       .range([height, 0]);
 
 
-      var propertyNames = []
       var color = ["red", "blue", "green", "orange", "purple", "black", "yellow", "maroon"];
+      var colorIndex = 0;
       for (var name in data[0]) {
         if (name != "date") {
-          propertyNames.push(name);
+          plotVariable(name, color[colorIndex]);
+          colorIndex++;
           console.log(`Property ${name}`);
         } 
       }
 
-      for(var i = 0; i < propertyNames.length; i++) {
-        plotVarible(propertyNames[i], color[i]);
-      }
-
-      
 
     var xAxisGroup = dataGroup
       .append("g")
@@ -102,7 +98,7 @@
 
 
 
-    function plotVarible(propertyName, color) {
+    function plotVariable(propertyName, color) {
       var line = d3.line()
         .x(d => x(d.date))
         .y(d => y(d[propertyName]));
