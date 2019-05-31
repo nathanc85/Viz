@@ -46,14 +46,6 @@
       .append("g")
       .attr("transform", "translate(" + margin + ", " + margin + ")");
 
-    var line1 = d3.line()
-      .x(d => x(d.date))
-      .y(d => y(d.value1));
-
-    var line2 = d3.line()
-      .x(d => x(d.date))
-      .y(d => y(d.value2));
-
     var parseTime = d3.timeParse("%m/%d/%Y");
 
     data.forEach(function (d) {
@@ -72,17 +64,8 @@
       }))
       .range([height, 0]);
 
-    dataGroup.append("path")
-      .data([data])
-      .attr("fill", "none")
-      .attr("stroke", "red")
-      .attr("d", line1);
-
-    dataGroup.append("path")
-      .data([data])
-      .attr("fill", "none")
-      .attr("stroke", "green")
-      .attr("d", line2);
+    plotVarible("value1", "red");
+    plotVarible("value2", "blue");
 
     var xAxisGroup = dataGroup
       .append("g")
@@ -101,6 +84,18 @@
     var yAxis = d3.axisLeft(y);
 
     yAxis(yAxisGroup);
+
+    function plotVarible(propertyName, color) {
+      var line = d3.line()
+        .x(d => x(d.date))
+        .y(d => y(d[propertyName]));
+
+      dataGroup.append("path")
+        .data([data])
+        .attr("fill", "none")
+        .attr("stroke", color)
+        .attr("d", line);
+    }
 
   </script>
 </body>
