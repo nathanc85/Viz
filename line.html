@@ -52,6 +52,10 @@
 
     data.forEach(function (d) {
       d.date = parseTime(d.date);
+      // Adding some extra values to the data.
+      d.value3 = Math.random() * 62;
+      d.value4 = Math.random() * 62;
+      d.value5 = Math.random() * 62;
     });
 
     var x = d3.scaleTime()
@@ -67,7 +71,7 @@
       .range([height, 0]);
 
 
-      var color = ["red", "blue", "green", "orange", "purple", "black", "yellow", "maroon"];
+      var color = d3.schemeCategory10;
       var colorIndex = 0;
       for (var name in data[0]) {
         if (name != "date") {
