@@ -18,6 +18,8 @@
       <td>
         <text></text>
       </td>
+    </tr>
+    <tr>
       <td>
         <input type="range" min="0" max="5" onchange="renderChart(value)" value="1" step="0.5">
       </td>
@@ -25,6 +27,7 @@
   </table>
 
   <script>
+    renderChart(1);
 
     function renderChart(exponent) {
       // Removing the previously generated svg.
@@ -74,10 +77,8 @@
 
       data.forEach(function (d) {
         d.date = parseTime(d.date);
-        // // Adding some extra values to the data.
-        // d.value3 = Math.random() * 62;
-        // d.value4 = Math.random() * 62;
-        // d.value5 = Math.random() * 62;
+        
+        delete d.value2;
       });
 
       var x = d3.scaleTime()
@@ -130,7 +131,9 @@
       function plotVariable(propertyName, color) {
         var line = d3.line()
           .x(d => x(d.date))
-          .y(d => y(d[propertyName]));
+          .y(d => y(d[propertyName]))
+          .curve(d3.curveStepAfter)
+          ;
 
         dataGroup.append("path")
           .data([data])
